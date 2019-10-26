@@ -28,7 +28,7 @@ class UserController {
    * @param {View} ctx.view
    */
   async index ({ request, response}) {
-    let { page, search,perPage } = request.all()
+    let { page, search, perPage } = request.all()
     page = page || this.page
     perPage = perPage || this.perPage
 
@@ -60,7 +60,7 @@ class UserController {
         password,
         rol
     })
-    
+
     return response.ok({user})
   }
 
