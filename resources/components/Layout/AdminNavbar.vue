@@ -9,7 +9,8 @@
         nuxt-link.navbar-item(to='/panel/users/create') Creación
         nuxt-link.navbar-item(to='/panel/users') Consulta
       b-navbar-dropdown(label='Pacientes')
-        nuxt-link.navbar-item(to='#') Consulta
+        nuxt-link.navbar-item(to='/panel/patients/create') Registro
+        nuxt-link.navbar-item(to='/panel/patients') Consulta
 
     template(slot='end')
       nuxt-link.navbar-item(to='/auth/login') Iniciar sesión
