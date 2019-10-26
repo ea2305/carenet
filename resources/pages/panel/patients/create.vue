@@ -23,9 +23,6 @@
                 @select="option => doctorSelected = option"
               )
 
-            b-field( label="Invitado (familiar)" :type="{'is-danger': errors.has('guest_id')}" :message="errors.first('guest_id')" )
-              b-input( v-model="guest_id" name="guest_id" v-validate="'required|max:500'" )
-
             b-field( label="Cama" :type="{'is-danger': errors.has('bed')}" :message="errors.first('bed')" )
               b-input( v-model="bed" name="bed" v-validate="'required|max:500'" )
 
@@ -48,7 +45,6 @@ export default {
 	},
   data: () => ({
     name: null,
-    guest_id: null,
     bed: null,
     // Select filter autocomplete,
     doctor: '', // buscador
@@ -87,14 +83,13 @@ export default {
       })
     },
     async AddNewPatient(){
-      const data = {
+      const form = {
         name: this.name,
         doctor_id: this.doctorSelected.id,
-        guest_id: this.guest_id,
 				bed: this.bed
 			}
 			// Crea nuevo usuario en store
-			await this.$store.dispatch('patients/create', data)
+			await this.$store.dispatch('patients/create', form)
 			this.$router.push("/panel/patients")
     }
   },
