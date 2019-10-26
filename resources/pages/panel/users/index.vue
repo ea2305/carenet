@@ -10,7 +10,7 @@
       //- Filtros
       .column.is-11-desktop.is-12-mobile
         .columns.is-multiline.is-mobile
-          p Filtros
+          //- p Filtros
 
       //- Tabla users data
       .column.is-11-desktop.is-12-mobile
@@ -97,6 +97,8 @@ export default {
      * Get users data
      */
     fetch () {
+      this.$store.commit('users/setPerPage', 10)
+      this.$store.commit('users/setRole', '')
       this.$store.commit('users/setPage', this.page)
       this.$store.commit('users/setSearch', this.search)
       this.$store.dispatch('users/list')
