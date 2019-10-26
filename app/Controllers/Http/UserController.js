@@ -34,6 +34,7 @@ class UserController {
 
     // prepare statement
     let query = User.query()
+    .orderBy('id', 'asc') 
 
     if (search) {
       query.where('email', 'LIKE', `%${search}%`)
