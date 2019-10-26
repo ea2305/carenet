@@ -83,7 +83,8 @@ export const actions = {
     return new Promise(async (resolve, reject) => {
       const loader = LoadingProgrammatic.open()
       try {
-        let { data } = await this.$axios.get(`/${name}`)
+        let params = { page: state.collection.page, search: state.collection.search }
+        let { data } = await this.$axios.get(`/${name}`, { params })
         commit('setCollection', data.users)
         resolve(data)
       } catch (error) {
