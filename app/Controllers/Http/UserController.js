@@ -28,7 +28,7 @@ class UserController {
    * @param {View} ctx.view
    */
   async index ({ request, response}) {
-    let { page, search,perPage } = request.all()
+    let { page, search, perPage } = request.all()
     page = page || this.page
     perPage = perPage || this.perPage
 
@@ -54,14 +54,14 @@ class UserController {
    * @param {Response} ctx.response
    */
   async store ({ request, response }) {
-    let {username,email,password}=request.only(['username','email','password','rol'])
+    let {username, email, password, rol}=request.only(['username','email','password','rol'])
     let user=await User.create({
         username,
         email,
         password,
         rol
     })
-    
+
     return response.ok({user})
   }
 
