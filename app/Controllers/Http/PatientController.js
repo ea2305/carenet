@@ -36,6 +36,7 @@ class PatientController {
     let query = Patient.query()
     .orderBy('id', 'asc') 
 
+    query.with('doctor')
     if (search) {
       query.where('name', 'LIKE', `%${search}%`)
     }

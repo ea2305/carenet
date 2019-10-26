@@ -4,6 +4,9 @@
 const Model = use('Model')
 
 class Patient extends Model {
+    doctor(){
+        return this.belongsTo('App/Model/User')
+    }
 }
 
 module.exports = Patient
