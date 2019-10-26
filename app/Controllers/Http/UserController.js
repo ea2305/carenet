@@ -53,7 +53,7 @@ class UserController {
    * @param {Response} ctx.response
    */
   async store ({ request, response }) {
-    let {username,email,password}=request.only(['username','email','password','rol'])
+    let {username, email, password, rol}=request.only(['username','email','password','rol'])
     let user=await User.create({
         username,
         email,

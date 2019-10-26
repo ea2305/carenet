@@ -18,7 +18,7 @@
             b-input(v-model='form.confirmation', maxlength='250' type="password" password-reveal required)
 
           b-field(label='Rol de usuario')
-            b-select(:value="form.rol" placeholder='Selecciona un rol valido')
+            b-select(:v-model="form.rol" placeholder='Selecciona un rol valido')
               option(value='') Seleccione una opción
               option(v-for='option in options', :value='option.value', :key='option.value') {{ option.name }}
 
