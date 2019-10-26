@@ -74,8 +74,10 @@ class UserController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show ({ params, request, response, view }) {
-
+  async show ({ params,  response }) {
+    let {id } = params
+    let user = await User.findOrFail(id)
+    return response.ok({user})
   }
 
 

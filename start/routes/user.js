@@ -13,6 +13,8 @@ Route.group(() => {
 
   Route.get('/', 'UserController.index')
 
+  Route.get('/:id', 'UserController.show')
+
   Route.put('/:id', 'UserController.update')
 
   Route.delete('/:id', 'UserController.destroy')
