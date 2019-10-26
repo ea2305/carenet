@@ -40,6 +40,7 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/auth',
     '@nuxtjs/dotenv',
+    ['@nuxtjs/moment', ['es']],
     'nuxt-buefy'
   ],
   plugins: [],

@@ -83,8 +83,9 @@ export const actions = {
     return new Promise(async (resolve, reject) => {
       const loader = LoadingProgrammatic.open()
       try {
-        let { data } = await this.$axios.get(`/${name}`)
-        commit('setCollection', data)
+        let params = { page: state.collection.page, search: state.collection.search }
+        let { data } = await this.$axios.get(`/${name}`, { params })
+        commit('setCollection', data.users)
         resolve(data)
       } catch (error) {
         reject(error)
@@ -176,13 +177,13 @@ export const actions = {
       try {
         const { data } = await this.$axios.delete(`/${name}/${index}`)
         // consultar nuevamente información
-        dispatch('get')
+        dispatch('list')
         // Notificación exito
-        Toast.open({ message: 'Elemento eliminado', type: 'is-success' })
+        Toast.open({ message: 'Usuario eliminado', type: 'is-success' })
 
         resolve(data)
       } catch (error) {
-        Toast.open({ message: 'Elemento no eliminado', type: 'is-danger' })
+        Toast.open({ message: 'Usuario no eliminado', type: 'is-danger' })
         reject(error)
       } finally {
         loader.close()
