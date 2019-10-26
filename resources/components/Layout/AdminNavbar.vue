@@ -5,11 +5,11 @@
         img(src='/icon.png', alt='Care net app')
 
     template(slot='start')
-      b-navbar-dropdown(label='Usuarios')
-        b-navbar-item(href='#') Creación
-        b-navbar-item(href='#') Consulta
+      b-navbar-dropdown(label='Personal')
+        nuxt-link.navbar-item(to='/panel/users/create') Creación
+        nuxt-link.navbar-item(to='/panel/users') Consulta
       b-navbar-dropdown(label='Pacientes')
-        b-navbar-item(href='#') Consulta
+        nuxt-link.navbar-item(to='#') Consulta
 
     template(slot='end')
       b-navbar-item(tag='div')

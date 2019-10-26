@@ -2,7 +2,7 @@ import { ToastProgrammatic as Toast } from 'buefy/dist/components/toast'
 import { LoadingProgrammatic } from 'buefy/dist/components/loading'
 
 // Generic
-const name = 'banners'
+const name = 'users'
 
 export const state = () => ({
   search: '',
@@ -128,6 +128,30 @@ export const actions = {
     return new Promise(async (resolve, reject) => {
       try {
         const { data } = await this.$axios.put(`/${name}/${index}`, form)
+        // notification
+        Toast.open({ message: 'Elemento actualizado', type: 'is-success' })
+        resolve(data)
+      } catch (error) {
+        Toast.open({ message: 'Elemento no actualizado', type: 'is-danger' })
+        reject(error)
+      } finally {
+        loader.close()
+      }
+    })
+  },
+
+  /**
+   *
+   * @param {Object} ctx : Nuxt context
+   * @param {Object} params.form : Form information
+   * @param {Object} params.index : Form information
+   */
+  async updatePassword ({ commit }, { form, index }) {
+    const loader = LoadingProgrammatic.open()
+
+    return new Promise(async (resolve, reject) => {
+      try {
+        const { data } = await this.$axios.put(`/${name}/${index}/password`, form)
         // notification
         Toast.open({ message: 'Elemento actualizado', type: 'is-success' })
         resolve(data)

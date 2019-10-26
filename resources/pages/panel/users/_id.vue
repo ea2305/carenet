@@ -1,21 +1,15 @@
 <template lang="pug">
   main
-    Title(title="Agregar personal" subtitle="Complete los campos")
+    Title(title="Actualizar información de personal" subtitle="Complete los campos")
     .columns.is-multiline.is-mobile.is-centered
       .column.is-11-mobile.is-11-desktop
 
-        form(@submit.prevent="sendForm")
+        form(@submit.prevent="update")
           b-field(label='Nombre de usuario')
             b-input(v-model='form.username', maxlength='250' required)
 
           b-field(label='Correo electrónico')
             b-input(v-model='form.email', maxlength='250' type="email" required)
-
-          b-field(label='Contraseña')
-            b-input(v-model='form.password', maxlength='250' type="password" password-reveal required)
-
-          b-field(label='Confirmar contraseña')
-            b-input(v-model='form.confirmation', maxlength='250' type="password" password-reveal required)
 
           b-field(label='Rol de usuario')
             b-select(:value="form.rol" placeholder='Selecciona un rol valido')
@@ -23,7 +17,19 @@
               option(v-for='option in options', :value='option.value', :key='option.value') {{ option.name }}
 
           br/
-          button.button.is-success.is-medium.is-pulled-right Crear
+          button.button.is-success.is-medium Actualizar
+
+        br/
+        form(@submit.prevent="updatePassword")
+
+          b-field(label='Contraseña')
+            b-input(v-model='auth.password', maxlength='250' type="password" password-reveal required)
+
+          b-field(label='Confirmar contraseña')
+            b-input(v-model='auth.confirmation', maxlength='250' type="password" password-reveal required)
+
+          br/
+          button.button.is-warning.is-medium Actualizar contraseña
 
 
 </template>
@@ -40,9 +46,11 @@ export default {
       form: {
         username: '',
         email: '',
+        rol: ''
+      },
+      auth: {
         password: '',
         confirmation: '',
-        rol: ''
       },
       options: [
         { value: 'admin', name: 'Administrador' },
@@ -52,22 +60,26 @@ export default {
     }
   },
   methods: {
-    async sendForm () {
-      if (this.form.password === '' || this.form.confirmation === '') {
+    async updatePassword () {
+      if (this.auth.password === '' || this.auth.confirmation === '') {
         this.$buefy.toast.open({ message: 'Contraseña obligatoria', type: 'is-danger', position: 'is-top' })
         return
       }
-      if (this.form.password !== this.form.confirmation) {
+      if (this.auth.password !== this.auth.confirmation) {
         this.$buefy.toast.open({ message: 'Los contraseñas no coinciden', type: 'is-danger', position: 'is-top' })
         return
       }
 
       // process
+      const form = { ...this.auth }
+      await this.$store.dispatch('users/updatePassword', form)
+      this.$buefy.toast.open({ message: 'Datos actualizados correctamente', type: 'is-success', position: 'is-top' })
+    },
+    async update() {
+      // process
       const form = { ...this.form }
-      await this.$store.dispatch('users/create', form)
-
-      // redirect
-      this.$router.push("/panel/users")
+      await this.$store.dispatch('users/updated', form)
+      this.$buefy.toast.open({ message: 'Datos actualizados correctamente', type: 'is-success', position: 'is-top' })
     }
   }
 }
