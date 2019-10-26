@@ -7,7 +7,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'Adonuxt',
+    title: 'CareNet',
     meta: [
       {
         charset: 'utf-8'
@@ -19,15 +19,11 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: 'Adonuxt project'
+        content: 'Una aplicación web que busca mejorar la atención hospitalaria para el paciente. Por medio de: * Comunicación oportuna entre personal medico y familiares. *Creación de reportes para el personal médico.'
       }
     ],
     link: [
-      {
-        rel: 'icon',
-        type: 'image/x-icon',
-        href: 'favicon.ico'
-      }
+      { rel: 'icon', type: 'image/png', href: '/favicon.png' },
     ]
   },
   modules: [
