@@ -28,7 +28,7 @@ class UserController {
    * @param {View} ctx.view
    */
   async index ({ request, response}) {
-    let { page, search, perPage } = request.all()
+    let { page, search, perPage , rol } = request.all()
     page = page || this.page
     perPage = perPage || this.perPage
 
@@ -38,6 +38,9 @@ class UserController {
 
     if (search) {
       query.where('email', 'LIKE', `%${search}%`)
+    }
+    if (rol) {
+      query.where('rol', 'LIKE', `%${rol}%`)
     }
     let users = await query.paginate(page, perPage)
     return response.ok({users})
