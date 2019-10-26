@@ -9,3 +9,12 @@ Factory.blueprint('App/Models/User', async (faker,i,data) => {
     rol: data.rol
   }
 })
+
+Factory.blueprint('App/Models/Patient', async (faker,i,data) => {
+    return {
+      name: faker.username(),
+      bed :"bed ("+data.guest_id+")", 
+      doctor_id:data.doctor_id,
+      guest_id:data.guest_id
+    }
+  })
