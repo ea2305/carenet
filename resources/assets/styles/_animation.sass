@@ -1,0 +1,68 @@
+/**
+ * Transition - animations
+ */
+
+// Loader animations
+.loader-transition-enter-active 
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1)
+
+.loader-transition-leave-active 
+  transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55)
+
+.loader-transition-enter, 
+  transform: translateY(-1000px)
+  opacity: 0
+
+.loader-transition-enter-to
+  transform: translateY(0px)
+  opacity: 1
+
+.loader-transition-leave
+  transform: translateY(0px)
+  opacity: 1
+
+.loader-transition-leave-to
+  transform: translateY(-1000px)
+  opacity: 0
+
+// Opacity
+
+.opacityin-enter-active, .opacityin-leave-active
+  transition: opacity .5s
+
+.opacityin-enter, .opacityin-leave-to
+  opacity: 0
+
+// Fade in
+@for $i from 1 through 5
+  .textin-#{$i}-enter-active 
+    transition: all 1.7s cubic-bezier(0.075, 0.82, 0.165, 1)
+    transition-delay: #{$i * .4}s
+
+  .textin-#{$i}-leave-active 
+    transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55)
+    transition-delay: #{$i * .1}s
+
+  .textin-#{$i}-enter
+    opacity: 0
+    padding-left: 1em
+    transform: translateX(-100px)
+    background: white
+
+  .textin-#{$i}-leave-to
+    opacity: 0
+    padding-left: 1em
+    transform: translateX(-100px)
+    background: white
+
+  .textin-#{$i}-enter-to
+    opacity: 1
+    padding-left: 0em
+    transform: translateX(0px)
+    background: transparent
+
+  .textin-#{$i}-leave
+    opacity: 1
+    padding-left: 0em
+    transform: translateY(20px)
+    background: transparent
