@@ -2,7 +2,7 @@ import { ToastProgrammatic as Toast } from 'buefy/dist/components/toast'
 import { LoadingProgrammatic } from 'buefy/dist/components/loading'
 
 // Generic
-const name = 'users'
+const name = 'patients'
 
 export const state = () => ({
   page: 1,
@@ -73,7 +73,7 @@ export const actions = {
       const loader = LoadingProgrammatic.open()
       try {
         let { data } = await this.$axios.get(`/${name}/${index}`)
-        commit('setEntity', data.user)
+        commit('setEntity', data.patient)
         resolve(data)
       } catch (error) {
         reject(error)
@@ -98,7 +98,7 @@ export const actions = {
           rol: state.rol
         }
         let { data } = await this.$axios.get(`/${name}`, { params })
-        commit('setCollection', data.users)
+        commit('setCollection', data.patients)
         resolve(data)
       } catch (error) {
         reject(error)

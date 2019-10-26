@@ -38,16 +38,17 @@
 import Title from '~/components/Layout/Title'
 export default {
   layout: 'auth',
+  middleware: 'auth',
   components: {
     Title
   },
   async asyncData ({ store, route }) {
-    store.dispatch('users/show', route.params.id)
+    await store.dispatch('users/show', route.params.id)
     return {
       form: {
-        username: store.entity.username,
-        email: store.entity.email,
-        rol: store.entity.rol
+        username: store.state.users.entity.username,
+        email: store.state.users.entity.email,
+        rol: store.state.users.entity.rol
       }
     }
   },
@@ -82,13 +83,13 @@ export default {
 
       // process
       const form = { ...this.auth }
-      await this.$store.dispatch('users/updatePassword', form)
+      await this.$store.dispatch('users/updatePassword', { form, index: this.$route.params.id })
       this.$buefy.toast.open({ message: 'Datos actualizados correctamente', type: 'is-success', position: 'is-top' })
     },
     async update() {
       // process
       const form = { ...this.form }
-      await this.$store.dispatch('users/updated', form)
+      await this.$store.dispatch('users/update', { form, index: this.$route.params.id })
       this.$buefy.toast.open({ message: 'Datos actualizados correctamente', type: 'is-success', position: 'is-top' })
     }
   }
