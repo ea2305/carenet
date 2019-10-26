@@ -1,0 +1,74 @@
+/**
+ * Fonts Forza Horizon 4 definition
+ * impact: Impack
+ */
+
+// Regular
+
+@font-face
+  font-family: 'Avenir'
+  src: url('../fonts/AvenirLTStd-Medium.otf')
+  font-weight: normal
+  font-style: normal
+
+
+@font-face
+  font-family: 'Avenir'
+  src: url('../fonts/AvenirLTStd-MediumOblique.otf')
+  font-weight: normal
+  font-style: italic
+
+// Light
+
+@font-face
+  font-family: 'Avenir'
+  src: url('../fonts/AvenirLTStd-Light.otf')
+  font-weight: lighter
+  font-style: normal
+
+
+@font-face
+  font-family: 'Avenir'
+  src: url('../fonts/AvenirLTStd-LightOblique.otf')
+  font-weight: lighter
+  font-style: italic
+
+// Bold
+
+@font-face
+  font-family: 'Avenir'
+  src: url('../fonts/AvenirLTStd-Roman.otf')
+  font-weight: bold
+  font-style: normal
+
+
+@font-face
+  font-family: 'Avenir'
+  src: url('../fonts/AvenirLTStd-Oblique.otf')
+  font-weight: bold
+  font-style: italic
+
+/**
+ * Normalizer
+ * Fonts, headers, text and elements
+ */
+span, textarea, p, strong, i, input, div, article, section, aside
+  font-family: 'Avenir', sans-serif
+
+label
+  font-family: 'Avenir', sans-serif
+
+/* Headers */
+@for $i from 1 through 6
+  // margin
+  h#{$i}
+    font-family: 'Avenir', sans-serif
+
+/**
+  * Classes
+  */
+.avenir
+  font-family: 'Avenir', sans-serif
+
+.font-bold
+  font-weight: bold

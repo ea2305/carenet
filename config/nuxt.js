@@ -1,4 +1,5 @@
 'use strict'
+require('dotenv').config()
 
 const resolve = require('path').resolve
 
@@ -6,8 +7,13 @@ module.exports = {
   /*
   ** Headers of the page
   */
+ env: {
+    APP_URL: process.env.APP_URL || 'http://localhost:3000',
+    API_URL: process.env.API_URL || 'http://localhost:3000/api/v1',
+    API_URL_BROWSER: process.env.API_URL || 'http://localhost:3000/api/v1'
+  },
   head: {
-    title: 'CareNet',
+    title: 'Carenet',
     meta: [
       {
         charset: 'utf-8'
@@ -23,13 +29,31 @@ module.exports = {
       }
     ],
     link: [
-      { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+      { rel: 'icon', type: 'image/x-icon', href: 'favicon.ico' },
+      { rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.2.0/css/all.css', integrity: 'sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ', crossorigin: 'anonymous'}
     ]
   },
+     /**
+   * Project modules
+   */
   modules: [
+    '@nuxtjs/axios',
     '@nuxtjs/auth',
+    '@nuxtjs/dotenv',
+    'nuxt-buefy'
   ],
   plugins: [],
+  axios: {
+    https: true
+  },
+  dotenv: {
+    path: `${__dirname}/..`,
+    only: [
+      'APP_URL',
+      'API_URL',
+      'API_URL_BROWSER'
+    ]
+  },
   auth: {
     token: { prefix: 'token' },
     strategies: {
@@ -57,7 +81,17 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: ['~assets/css/main.css'],
+  css: [
+    { src: '~assets/styles/_animation.sass', lang: 'sass' },
+    { src: '~assets/styles/_margin.sass', lang: 'sass' },
+    { src: '~assets/styles/_position.sass', lang: 'sass' },
+    { src: '~assets/styles/_viewport_size.sass', lang: 'sass' },
+    { src: '~assets/styles/_align_rules.sass', lang: 'sass' },
+    { src: '~assets/styles/_fonts.sass', lang: 'sass' },
+    { src: '~assets/styles/base_bulma.scss', lang: 'scss' }, // Bluma MOD
+    { src: 'swiper/dist/css/swiper.css', lang: 'css'},
+    '~assets/css/main.css'
+  ],
   /*
   ** Customize the progress-bar color
   */
