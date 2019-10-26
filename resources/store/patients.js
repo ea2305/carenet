@@ -2,7 +2,7 @@ import { ToastProgrammatic as Toast } from 'buefy/dist/components/toast'
 import { LoadingProgrammatic } from 'buefy/dist/components/loading'
 
 // Generic
-const name = 'users'
+const name = 'patients'
 
 export const state = () => ({
   page: 1,
