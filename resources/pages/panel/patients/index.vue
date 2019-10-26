@@ -1,19 +1,20 @@
 <template lang="pug">
-  .column.is-12
+  main
+    Title(title="Listado de pacientes" subtitle="")
+
     .columns.is-multiline.is-mobile.is-centered
 
-      Title(title="Listado de pacientes" subtitle="")
       //- Search
-      .column.is-11-desktop.is-12-mobile.mt-2
+      .column.is-11-desktop.is-11-mobile.mt-2
         Search( @sendSearch="sendSearch", :data="$store.state.patients.collection.data" )
 
       //- Filtros
-      .column.is-11-desktop.is-12-mobile
+      .column.is-11-desktop.is-11-mobile
         .columns.is-multiline.is-mobile
           p Filtros
 
       //- Tabla users data
-      .column.is-11-desktop.is-12-mobile
+      .column.is-11-desktop.is-11-mobile
         b-table(
           :data='$store.state.patients.collection.data',
           :mobile-cards="true"
