@@ -84,7 +84,7 @@ export const actions = {
       const loader = LoadingProgrammatic.open()
       try {
         let { data } = await this.$axios.get(`/${name}`)
-        commit('setCollection', data)
+        commit('setCollection', data.users)
         resolve(data)
       } catch (error) {
         reject(error)
