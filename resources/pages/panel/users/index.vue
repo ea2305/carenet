@@ -1,8 +1,8 @@
 <template lang="pug">
-  .column.is-12
-    .columns.is-multiline.is-mobile.is-centered
+  main
+    Title(title="Listado de personal" subtitle="")
 
-      Title(title="Listado de personal" subtitle="")
+    .columns.is-multiline.is-mobile.is-centered
       //- Search
       .column.is-11-desktop.is-12-mobile.mt-2
         Search( @sendSearch="sendSearch", :data="$store.state.users.collection.data" )

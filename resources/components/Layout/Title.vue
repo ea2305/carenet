@@ -1,5 +1,5 @@
 <template lang="pug">
-  section.hero
+  section.hero.is-pink.is-bold
     .hero-body
       .container
         h1.title.has-text-centered {{ title }}

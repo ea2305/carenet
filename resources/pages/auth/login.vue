@@ -1,13 +1,13 @@
 <template lang="pug">
   .column.is-12
     .columns.is-multiline.is-mobile.is-centered.vpage.image-background.is-marginless
-      .column.is-11-desktop.is-11-mobile.is-flex.flex-center
+      .column.is-8-desktop.is-11-mobile.is-flex.flex-center
 
         // Card body
         .card.has-background-white.full-width.p-2
           .card-media
             .is-flex.flex-center.mt-2
-              //- img(src='/logos/blue_icon.svg' width="300")
+              img(src='/favicon.png' width="200")
 
           form.card-content(@submit.prevent="validateBeforeSubmit")
 
@@ -57,7 +57,7 @@
               ) Recuperar contraseña
 
             .is-flex.flex-end.mt-2
-              button.is-medium.button.is-pink.pl-2.pr-2 Ingresar
+              button.is-medium.button.is-success.pl-2.pr-2 Ingresar
 </template>
 
 <script>
