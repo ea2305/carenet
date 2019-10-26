@@ -1,35 +1,40 @@
 <template lang="pug">
   main
-    Title(title="Actualizar información de personal" subtitle="Complete los campos")
     .columns.is-multiline.is-mobile.is-centered
-      .column.is-11-mobile.is-11-desktop
 
-        form(@submit.prevent="update")
-          b-field(label='Nombre de usuario')
-            b-input(v-model='form.username', maxlength='250' required)
+      .column.is-12-desktop.is-12-mobile
 
-          b-field(label='Correo electrónico')
-            b-input(v-model='form.email', maxlength='250' type="email" required)
+        Title(title="Actualizar información de personal" subtitle="Complete los campos")
 
-          b-field(label='Rol de usuario')
-            b-select(:value="form.rol" placeholder='Selecciona un rol valido')
-              option(value='') Seleccione una opción
-              option(v-for='option in options', :value='option.value', :key='option.value') {{ option.name }}
+        .columns.is-multiline.is-mobile.is-centered.mt-2
+          .column.is-11-mobile.is-11-desktop
 
-          br/
-          button.button.is-success.is-medium Actualizar
+            form(@submit.prevent="update")
+              b-field(label='Nombre de usuario')
+                b-input(v-model='form.username', maxlength='250' required)
 
-        br/
-        form(@submit.prevent="updatePassword")
+              b-field(label='Correo electrónico')
+                b-input(v-model='form.email', maxlength='250' type="email" required)
 
-          b-field(label='Contraseña')
-            b-input(v-model='auth.password', maxlength='250' type="password" password-reveal required)
+              b-field(label='Rol de usuario')
+                b-select(:value="form.rol" placeholder='Selecciona un rol valido')
+                  option(value='') Seleccione una opción
+                  option(v-for='option in options', :value='option.value', :key='option.value') {{ option.name }}
 
-          b-field(label='Confirmar contraseña')
-            b-input(v-model='auth.confirmation', maxlength='250' type="password" password-reveal required)
+              br/
+              button.button.is-success.is-medium Actualizar
 
-          br/
-          button.button.is-warning.is-medium Actualizar contraseña
+            br/
+            form(@submit.prevent="updatePassword")
+
+              b-field(label='Contraseña')
+                b-input(v-model='auth.password', maxlength='250' type="password" password-reveal required)
+
+              b-field(label='Confirmar contraseña')
+                b-input(v-model='auth.confirmation', maxlength='250' type="password" password-reveal required)
+
+              br/
+              button.button.is-warning.is-medium Actualizar contraseña
 
 
 </template>

@@ -13,7 +13,7 @@
         nuxt-link.navbar-item(to='/panel/patients') Consulta
 
     template(slot='end')
-      nuxt-link.navbar-item(to='/auth/login') Iniciar sesión
+      nuxt-link.navbar-item(v-if="!loggedIn" to='/auth/login') Iniciar sesión
       b-navbar-item(tag='div')
         .buttons(v-if="loggedIn" @click="logout")
           a.button.is-light Logout

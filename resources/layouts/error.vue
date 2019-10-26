@@ -26,6 +26,7 @@
 {{{{/raw}}}}
 <script>
 export default {
+  layout: 'auth',
   props: ['error']
 }
 </script>

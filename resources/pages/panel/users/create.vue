@@ -1,7 +1,8 @@
 <template lang="pug">
   main
     Title(title="Agregar personal" subtitle="Complete los campos")
-    .columns.is-multiline.is-mobile.is-centered
+
+    .columns.is-multiline.is-mobile.is-centered.mt-2
       .column.is-11-mobile.is-11-desktop
 
         form(@submit.prevent="sendForm")
