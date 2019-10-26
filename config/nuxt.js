@@ -1,4 +1,5 @@
 'use strict'
+require('dotenv').config()
 
 const resolve = require('path').resolve
 
@@ -6,6 +7,11 @@ module.exports = {
   /*
   ** Headers of the page
   */
+ env: {
+    APP_URL: process.env.APP_URL || 'http://localhost:3000',
+    API_URL: process.env.API_URL || 'http://localhost:3000/api/v1',
+    API_URL_BROWSER: process.env.API_URL || 'http://localhost:3000/api/v1'
+  },
   head: {
     title: 'CareNet',
     meta: [
@@ -27,9 +33,22 @@ module.exports = {
     ]
   },
   modules: [
+    '@nuxtjs/axios',
     '@nuxtjs/auth',
+    '@nuxtjs/dotenv',
   ],
   plugins: [],
+  axios: {
+    https: true
+  },
+  dotenv: {
+    path: `${__dirname}/..`,
+    only: [
+      'APP_URL',
+      'API_URL',
+      'API_URL_BROWSER'
+    ]
+  },
   auth: {
     token: { prefix: 'token' },
     strategies: {
