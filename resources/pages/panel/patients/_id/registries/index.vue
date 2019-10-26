@@ -5,7 +5,7 @@
     .columns.is-multiline.is-mobile.is-centered
       .column.is-11-desktop.is-11-mobile.is-flex.flex-center.flex-valign.flex-column.mt-2
         nuxt-link.button.is-success.is-medium.is-pulled-right(
-          :to="`/panle/patients/${$route.params.id}/registries/create`"
+          :to="`/panel/patients/${$route.params.id}/registries/create`"
         ) Crear Reporte
 
       //- Content
