@@ -2,8 +2,8 @@
   section.hero
     .hero-body
       .container
-        h1.title {{ title }}
-        h2.subtitle {{ subtitle }}
+        h1.title.has-text-centered {{ title }}
+        h2.subtitle.has-text-centered {{ subtitle }}
 
 </template>
 

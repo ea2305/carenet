@@ -4,7 +4,7 @@
       b-navbar-item(tag='router-link', :to="{ path: '/' }")
         img(src='/icon.png', alt='Care net app' width="150" height="150")
 
-    template(slot='start')
+    template(v-if="loggedIn" slot='start')
       b-navbar-dropdown(label='Personal')
         nuxt-link.navbar-item(to='/panel/users/create') Creación
         nuxt-link.navbar-item(to='/panel/users') Consulta
@@ -12,8 +12,9 @@
         nuxt-link.navbar-item(to='#') Consulta
 
     template(slot='end')
+      nuxt-link.navbar-item(to='/auth/login') Iniciar sesión
       b-navbar-item(tag='div')
-        .buttons(@click="logout")
+        .buttons(v-if="loggedIn" @click="logout")
           a.button.is-light Logout
 
 </template>
@@ -23,6 +24,11 @@ export default {
   methods: {
     async logout () {
       await this.$auth.logout()
+    }
+  },
+  computed: {
+    loggedIn () {
+      return this.$auth.loggedIn
     }
   }
 }

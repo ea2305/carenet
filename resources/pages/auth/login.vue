@@ -1,8 +1,8 @@
 <template lang="pug">
   .column.is-12
     .columns.is-multiline.is-mobile.is-centered.vpage.image-background.is-marginless
-      .column.is-8-desktop.is-8-mobile.is-flex.flex-center
-        
+      .column.is-11-desktop.is-11-mobile.is-flex.flex-center
+
         // Card body
         .card.has-background-white.full-width.p-2
           .card-media
@@ -46,8 +46,8 @@
             //- client-only
               vue-recaptcha.is-flex.flex-center(
                 v-if='request_captcha'
-                @verify='onVerify', 
-                @expired='onExpired', 
+                @verify='onVerify',
+                @expired='onExpired',
                 sitekey='6Lfjd6EUAAAAAN6PiCkyRxsS12ZXbG2Mc_yI594u'
               )
 
@@ -61,6 +61,7 @@
 </template>
 
 <script>
+let timer = null
 export default {
   layout: 'auth',
   head: {
@@ -89,7 +90,9 @@ export default {
   },
   methods: {
     moveToDashboard() {
-      this.$router.push('/panel')
+      if (this.$auth.loggedIn) {
+        this.$router.push('/panel')
+      }
     },
     /**
      * Función de inicio de sesión
@@ -109,18 +112,19 @@ export default {
           type: 'is-success',
           position: 'is-bottom'
         })
-        console.log('Auth success')
+
         if(this.$auth.user.rol === 'admin') {
-          this.$router.push('/panel/perfil')
+          this.$router.push('/panel')
         } else {
           this.$router.push('/panel')
         }
       } catch (error) {
         console.log(error)
-        if (error.response.data.requirement) {
-          this.request_captcha = true
-        }
-        this.$router.push('/auth/login') 
+        this.$buefy.toast.open({
+          message: 'Error al iniciar sesión',
+          type: 'is-danger',
+          position: 'is-top'
+        })
       }
     },
     /**
@@ -149,7 +153,7 @@ export default {
     // // Captcha ha expirado
 		// onExpired () {
     //   this.$snackbar.open({ message: 'La validación de captcha ha expirado', type: 'is-warning' })
-    // }, 
+    // },
     // // Captcha se ha ejecutado
 		// onSubmit () {
 		// 	this.$refs.invisibleRecaptcha.execute()
