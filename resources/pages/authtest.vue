@@ -1,9 +1,6 @@
-<template>
-  <section class="container">
-    <button @click="login">
-      login
-    </button>
-  </section>
+<template lang="pug">
+  section
+    button(@click="login") Login bro
 </template>
 
 <script>
