@@ -41,7 +41,9 @@ module.exports = {
     ['@nuxtjs/moment', ['es']],
     'nuxt-buefy'
   ],
-  plugins: [],
+  plugins: [
+    { src: '~plugins/validator.js' },
+  ],
   axios: {
     https: true
   },
