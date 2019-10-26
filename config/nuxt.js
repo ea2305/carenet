@@ -15,13 +15,10 @@ module.exports = {
   head: {
     title: 'Carenet',
     meta: [
-      {
-        charset: 'utf-8'
-      },
-      {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1'
-      },
+      { charset: 'utf-8' },
+      { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge'},
+      { 'http-equiv': 'ScreenOrientation', content: 'autoRotate:disabled' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' },
       {
         hid: 'description',
         name: 'description',
