@@ -2,7 +2,7 @@
   b-navbar
     template(slot='brand')
       b-navbar-item(tag='router-link', :to="{ path: '/' }")
-        img(src='/icon.png', alt='Care net app')
+        img(src='/icon.png', alt='Care net app' width="150" height="150")
 
     template(slot='start')
       b-navbar-dropdown(label='Personal')

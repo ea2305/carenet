@@ -4,6 +4,7 @@ require('dotenv').config()
 const resolve = require('path').resolve
 
 module.exports = {
+  mode: 'spa',
   /*
   ** Headers of the page
   */
