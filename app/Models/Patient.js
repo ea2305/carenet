@@ -5,7 +5,7 @@ const Model = use('Model')
 
 class Patient extends Model {
     doctor(){
-        return this.belongsTo('App/Model/User')
+        return this.belongsTo('App/Models/User', 'id')
     }
 }
 

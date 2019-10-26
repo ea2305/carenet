@@ -27,10 +27,9 @@
         )
           template(slot-scope='props')
             b-table-column(field="id" label="ID" width="10" sortable) {{ props.row.id }}
-            //
-              b-table-column(field="username" label="Nombre de usuario" width="40" sortable) {{ props.row.username }}
-              b-table-column(field="email" label="Email" width="50") {{ props.row.email }}
-              b-table-column(field="rol" label="Rol" width="50") {{ props.row.rol }}
+            b-table-column(field="name" label="Nombre de paciente" width="40" sortable) {{ props.row.name }}
+            b-table-column(field="bed" label="Número de cama" width="50") {{ props.row.bed }}
+            b-table-column(field="doctor" label="Doctor" width="50" sortable) {{ (props.row.doctor) ? props.row.doctor.username : '' }}
             b-table-column(field="created_at" label="Creado" width="10") {{ $moment(props.row.created_at).format('D/M/YYYY') }}
             b-table-column(field="updated_at" label="Modificado" width="10" sortable) {{ $moment(props.row.updated_at).format('D/M/YYYY') }}
 
@@ -120,6 +119,12 @@ export default {
       this.$store.dispatch('patients/delete', this.idUserSelected)
       this.isModalActive = false
     }
+  },
+  /**
+	* Filter to truncate string, accepts a length parameter
+	*/
+	filters: {
+		truncate: (val, len) => val.length > len ? `${val.substr(0, len)}...` : val
   }
 }
 </script>
