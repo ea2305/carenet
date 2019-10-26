@@ -65,7 +65,7 @@ export const actions = {
       const loader = LoadingProgrammatic.open()
       try {
         let { data } = await this.$axios.get(`/${name}/${index}`)
-        commit('setEntity', data)
+        commit('setEntity', data.user)
         resolve(data)
       } catch (error) {
         reject(error)
@@ -152,7 +152,7 @@ export const actions = {
 
     return new Promise(async (resolve, reject) => {
       try {
-        const { data } = await this.$axios.put(`/${name}/${index}/password`, form)
+        const { data } = await this.$axios.post(`/${name}/${index}/password`, form)
         // notification
         Toast.open({ message: 'Elemento actualizado', type: 'is-success' })
         resolve(data)

@@ -54,6 +54,7 @@ import Title from '~/components/Layout/Title'
 import Search from '~/components/BaseSearch'
 export default {
   layout: 'auth',
+  middleware: 'auth',
 	components: {
     Search,
     Title

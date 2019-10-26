@@ -13,7 +13,17 @@
 
     template(slot='end')
       b-navbar-item(tag='div')
-        .buttons
+        .buttons(@click="logout")
           a.button.is-light Logout
 
 </template>
+
+<script>
+export default {
+  methods: {
+    async logout () {
+      await this.$auth.logout()
+    }
+  }
+}
+</script>
