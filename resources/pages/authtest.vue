@@ -8,7 +8,7 @@ export default {
   layout: 'auth',
   methods: {
     async login () {
-      const data = { email: 'example@yopmail.com', password: 'here'}
+      const data = { email: 'admin@gmail.com', password: 'admin'}
       await this.$auth.loginWith('local', { data })
     }
   }
