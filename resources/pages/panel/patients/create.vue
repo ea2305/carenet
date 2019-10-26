@@ -87,7 +87,7 @@ export default {
         name: this.name,
         doctor_id: this.doctorSelected.id,
 				bed: this.bed
-			}
+      }
 			// Crea nuevo usuario en store
 			await this.$store.dispatch('patients/create', form)
 			this.$router.push("/panel/patients")
