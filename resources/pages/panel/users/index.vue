@@ -10,7 +10,7 @@
       //- Filtros
       .column.is-11-desktop.is-12-mobile
         .columns.is-multiline.is-mobile
-          p Filtros
+          //- p Filtros
 
       //- Tabla users data
       .column.is-11-desktop.is-12-mobile
