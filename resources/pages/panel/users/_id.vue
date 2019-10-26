@@ -27,11 +27,11 @@
             br/
             form(@submit.prevent="updatePassword")
 
-              b-field(label='Contraseña' :type="{'is-danger': errors.has('form.password')}" :message="errors.first('form.password')")
-                b-input(v-model='form.password', name='form.password', maxlength='250' type="password" v-validate="{ required: true, is: form.confirmation }" password-reveal required)
+              b-field(label='Contraseña' :type="{'is-danger': errors.has('auth.password')}" :message="errors.first('auth.password')")
+                b-input(v-model='auth.password', name='auth.password', maxlength='250' type="password" v-validate="'required|confirmed:auth.confirmation'" password-reveal required)
 
-              b-field(label='Confirmar contraseña' :type="{'is-danger': errors.has('form.confirmation')}" :message="errors.first('form.confirmation')")
-                b-input(v-model='form.confirmation', name='form.confirmation', maxlength='250' type="password" v-validate="'required'" password-reveal required)
+              b-field(label='Confirmar contraseña' :type="{'is-danger': errors.has('auth.confirmation')}" :message="errors.first('auth.confirmation')")
+                b-input(v-model='auth.confirmation', name='auth.confirmation', maxlength='250' type="password" v-validate="'required'" password-reveal required)
 
               br/
               button.button.is-warning.is-medium Actualizar contraseña
@@ -83,7 +83,7 @@ export default {
         return
       }
 
-      this.$validator.validateAll().then(async (result) => {
+      this.$validator.validate('auth.*').then(async (result) => {
         if (result) {
           // process
           const form = { ...this.auth }
@@ -96,7 +96,7 @@ export default {
     },
 
     async update() {
-      this.$validator.validateAll().then(async (result) => {
+      this.$validator.validate('form.*').then(async (result) => {
         if (result) {
           // process
           // process

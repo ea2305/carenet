@@ -25,7 +25,7 @@
           :backend-pagination='true'
           :hoverable="true"
         )
-          template(slot-scope='props')
+          template(slot-scope='props' v-if="props.row.active")
             b-table-column(field="id" label="ID" width="10" sortable) {{ props.row.id }}
             b-table-column(field="name" label="Nombre de paciente" width="40" sortable) {{ props.row.name }}
             b-table-column(field="bed" label="Número de cama" width="50") {{ props.row.bed }}
