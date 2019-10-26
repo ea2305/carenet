@@ -11,6 +11,13 @@ const User= use('App/Models/User')
  * Resourceful controller for interacting with patients
  */
 class PatientController {
+      /**
+   * setup
+   */
+  constructor () {
+    this.page = 1
+    this.perPage = 10
+  }
   /**
    * Show a list of all patients.
    * GET patients
@@ -21,7 +28,22 @@ class PatientController {
    * @param {View} ctx.view
    */
   async index ({ request, response }) {
-    return await Patient.all()
+    let { page, search, perPage } = request.all()
+    page = page || this.page
+    perPage = perPage || this.perPage
+
+    // prepare statement
+    let query = Patient.query()
+    .orderBy('id', 'asc') 
+
+    if (search) {
+      query.where('name', 'LIKE', `%${search}%`)
+    }
+
+    let patients = await query.paginate(page, perPage)
+    return response.ok({patients})
+
+
   }
 
 
