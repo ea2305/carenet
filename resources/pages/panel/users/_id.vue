@@ -41,6 +41,16 @@ export default {
   components: {
     Title
   },
+  async asyncData ({ store, route }) {
+    store.dispatch('users/show', route.params.id)
+    return {
+      form: {
+        username: store.entity.username,
+        email: store.entity.email,
+        rol: store.entity.rol
+      }
+    }
+  },
   data () {
     return {
       form: {
