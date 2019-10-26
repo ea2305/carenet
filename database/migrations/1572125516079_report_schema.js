@@ -14,6 +14,7 @@ class ReportSchema extends Schema {
       table.integer('nurse_id').unsigned().notNullable()
       table.foreign('nurse_id').references('id').on('users')
       table.string('type')
+      table.string('description')
       table.timestamps()
     })
   }
