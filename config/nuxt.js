@@ -19,13 +19,41 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: 'Adonuxt project'
+        content: 'Una aplicación web que busca mejorar la atención hospitalaria para el paciente. Por medio de: * Comunicación oportuna entre personal medico y familiares. *Creación de reportes para el personal médico.'
       }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: 'favicon.ico' },
       { rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.2.0/css/all.css', integrity: 'sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ', crossorigin: 'anonymous'}
     ]
+  },
+  modules: [
+    '@nuxtjs/auth',
+  ],
+  plugins: [],
+  auth: {
+    token: { prefix: 'token' },
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/auth/login', method: 'post', propertyName: 'token' },
+          logout: { url: '/auth/logout', method: 'post' },
+          reset: { url: '/auth/identity', method: "get" },
+          user: { url: '/auth/identity', method: 'get', propertyName: 'user' }
+        }
+      },
+      tokenType: 'bearer'
+    },
+    cookie: {
+      name: 'token',
+      options: { expires: 30, secure: true }
+    },
+    redirect: {
+      login: '/auth/login',
+      logout: '/auth/login',
+      callback: '/auth/login',
+      home: '/panel'
+    },
   },
   /*
   ** Global CSS
