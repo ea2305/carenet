@@ -12,6 +12,7 @@ const Route = use('Route')
 require('./auth')
 require('./user')
 require('./patient')
+require('./report')
 
 
 Route.any('*', 'NuxtController.render')

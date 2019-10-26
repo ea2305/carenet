@@ -131,6 +131,20 @@ class PatientController {
     await patient.save()
     return response.status(200).json(patient)
   }
+
+    /**
+   * Retrieve reports from a patient with id.
+   * GET patients/:id/registres
+   *
+   * @param {object} ctx
+   * @param {Request} ctx.request
+   * @param {Response} ctx.response
+   */
+  async reports({params}){
+    let {id} = params
+    const patient =await Patient.findOrFail(id)
+    return  await patient.reports().fetch()
+  }
 }
 
 module.exports = PatientController
