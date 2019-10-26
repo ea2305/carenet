@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  layout: 'auth',
   methods: {
     async login () {
       const data = { email: 'example@yopmail.com', password: 'here'}
