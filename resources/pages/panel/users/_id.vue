@@ -42,7 +42,7 @@ export default {
     Title
   },
   async asyncData ({ store, route }) {
-    store.dispatch('users/show', route.params.id)
+    await store.dispatch('users/show', route.params.id)
     return {
       form: {
         username: store.entity.username,
