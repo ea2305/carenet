@@ -27,15 +27,24 @@
             b-table-column(field="username" label="Nombre de usuario" width="40" sortable) {{ props.row.username }}
             b-table-column(field="email" label="Email" width="50") {{ props.row.email }}
             b-table-column(field="rol" label="Rol" width="50") {{ props.row.rol }}
-            //- b-table-column(field="created_at" label="Creado" width="10") {{ $moment(props.row.created_at).format('D/M/YYYY') }}
-            //- b-table-column(field="updated_at" label="Modificado" width="10" sortable) {{ $moment(props.row.updated_at).format('D/M/YYYY') }}
+            b-table-column(field="created_at" label="Creado" width="10") {{ $moment(props.row.created_at).format('D/M/YYYY') }}
+            b-table-column(field="updated_at" label="Modificado" width="10" sortable) {{ $moment(props.row.updated_at).format('D/M/YYYY') }}
             
-            //- b-table-column(field="id" label="Acciones" width="10" v-if="$auth.user.roles[0] === 'administrator' && $auth.user.permissions.map(e => e.slug).includes('user_management')")
+            b-table-column(field="id" label="Acciones" width="10" v-if="$auth.user.rol === 'admin'")
               .is-flex.flex-center
-                nuxt-link.button.is-rounded.is-outlined.is-primary.is-small(:to="`/panel/usuarios/${props.row.id}`") Editar
+                nuxt-link.button.is-rounded.is-outlined.is-primary.is-small(:to="`/panel/users/${props.row.id}`") Editar
                 button.button.is-rounded.is-outlined.is-danger.is-small.ml-1(@click="showDeleteModal(props.row.id)") Eliminar
         
+      b-modal(:active.sync="isModalActive")
+        .card.is-flex.flex-center.flex-column.p-2
+          h3.title Eliminar Usuario
+          h4.subtitle ¿Estás seguro que deseas eliminar el recurso?
+          p.is-size-5 Antes de proceder, recuerda:
+          p.is-size-6.has-text-danger Esta acción no se puede revertir
 
+          div.mt-2
+            button.button.is-danger(@click="deleteElement") Eliminar 
+            button.button.is-primary.ml-1(@click="isModalActive = false") Cancelar
 </template>
 
 <script>
@@ -58,7 +67,9 @@ export default {
     entity: 'users',
     
     // Table
-		page: 1
+    page: 1,
+    idUserSelected: null,
+    isModalActive: false
   }),
   watch: {
 		search: {

@@ -176,13 +176,13 @@ export const actions = {
       try {
         const { data } = await this.$axios.delete(`/${name}/${index}`)
         // consultar nuevamente información
-        dispatch('get')
+        dispatch('list')
         // Notificación exito
-        Toast.open({ message: 'Elemento eliminado', type: 'is-success' })
+        Toast.open({ message: 'Usuario eliminado', type: 'is-success' })
 
         resolve(data)
       } catch (error) {
-        Toast.open({ message: 'Elemento no eliminado', type: 'is-danger' })
+        Toast.open({ message: 'Usuario no eliminado', type: 'is-danger' })
         reject(error)
       } finally {
         loader.close()
