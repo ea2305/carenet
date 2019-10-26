@@ -26,6 +26,8 @@
     "@adonisjs/session": "1.0.29",
     "@adonisjs/shield": "^1.0.4",
     "@nuxtjs/auth": "4.8.4",
+    "@nuxtjs/axios": "5.8.0",
+    "@nuxtjs/dotenv": "1.4.1",
     "cross-env": "6.0.3",
     "nuxt": "latest",
     "nuxt-buefy": "^0.3.17",

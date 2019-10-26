@@ -14,7 +14,7 @@ class UserSchema extends Schema {
       table.string('password').notNullable()
 
       // Adonis Persona req.
-      table.string('account_status')
+      table.string('rol').notNullable().defaultTo('nurse')
 
       table.timestamps()
     })
