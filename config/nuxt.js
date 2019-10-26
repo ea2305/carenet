@@ -39,11 +39,37 @@ module.exports = {
     '@nuxtjs/auth',
     '@nuxtjs/dotenv',
     ['@nuxtjs/moment', ['es']],
-    'nuxt-buefy'
+    'nuxt-buefy',
+    '@nuxtjs/pwa'
   ],
   plugins: [
     { src: '~plugins/validator.js' },
   ],
+  pwa: {
+    meta: {
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no',
+      mobileApp: true,
+      mobileAppIOS: true,
+      name: 'CareNet | Atención y comunicación continua',
+      short_name: 'CareNet',
+      lang: 'es',
+      orientation: 'portrait',
+      theme_color: '#E35050',
+      start_url: '/',
+      display: 'fullscreen',
+      background_color: '#FFF',
+      description: 'Una aplicación web que busca mejorar la atención hospitalaria para el paciente. Por medio de: * Comunicación oportuna entre personal medico y familiares. *Creación de reportes para el personal médico.',
+      // gcm_sender_id: '103953800507',
+      icons: [
+        {
+          'src': '/favicon.png',
+          'sizes': '48x48',
+          'type': 'image/png'
+        }
+      ]
+    }
+  },
   axios: {
     https: true
   },

@@ -1,16 +1,26 @@
 {{{{raw}}}}
 <template>
   <section class="container">
-    <img src="../assets/img/logo.png" alt="Nuxt.js Logo" />
-    <h1 class="title">
+
+    <div class="is-flex flex-center">
+      <img src="/favicon.png" alt="Application logo" width="200"/>
+    </div>
+
+    <hr/>
+
+    <h1 class="title has-text-centered">
       {{ error.statusCode }}
     </h1>
-    <h2 class="info">
+    <h2 class="info has-text-centered">
       {{ error.message }}
     </h2>
-    <nuxt-link class="button" to="/" v-if="error.statusCode === 404">
-      Homepage
-    </nuxt-link>
+
+    <div class="is-flex flex-center">
+      <nuxt-link class="button" to="/" v-if="error.statusCode === 404 || error.statusCode === 500">
+        Volver a inicio
+      </nuxt-link>
+    </div>
+
   </section>
 </template>
 {{{{/raw}}}}
