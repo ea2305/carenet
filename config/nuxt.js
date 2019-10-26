@@ -44,6 +44,8 @@ module.exports = {
   ],
   plugins: [
     { src: '~plugins/validator.js' },
+    { src: '~plugins/qr-plugin.js', ssr: false },
+    { src: '~plugins/qr-reader.js', ssr: false },
   ],
   pwa: {
     meta: {
