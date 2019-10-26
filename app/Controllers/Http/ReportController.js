@@ -92,7 +92,7 @@ class ReportController {
 
     await report.delete()
 
-    return report.status(200).json(report)
+    return response.status(200).json(report)
   }
 }
 
