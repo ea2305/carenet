@@ -30,6 +30,34 @@ module.exports = {
       }
     ]
   },
+  modules: [
+    '@nuxtjs/auth',
+  ],
+  plugins: [],
+  auth: {
+    token: { prefix: 'token' },
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/auth/login', method: 'post', propertyName: 'token' },
+          logout: { url: '/auth/logout', method: 'post' },
+          reset: { url: '/auth/identity', method: "get" },
+          user: { url: '/auth/identity', method: 'get', propertyName: 'user' }
+        }
+      },
+      tokenType: 'bearer'
+    },
+    cookie: {
+      name: 'token',
+      options: { expires: 30, secure: true }
+    },
+    redirect: {
+      login: '/auth/login',
+      logout: '/auth/login',
+      callback: '/auth/login',
+      home: '/panel'
+    },
+  },
   /*
   ** Global CSS
   */
