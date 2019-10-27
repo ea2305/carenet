@@ -18,6 +18,8 @@ class ReportController {
   constructor () {
     this.page = 1
     this.perPage = 10
+    this.pageF = 1
+    this.perPageF = 10
   }
   /**
    * Show a list of all reports.
@@ -102,12 +104,16 @@ class ReportController {
     let guest = await Guest.findByOrFail('token',token)
     let patient = await Patient.findByOrFail('guest_id',guest.id)
     let query = Report.query()
+    let { page,  perPage } = request.all()
+    page = page || this.pageF
+    perPage = perPage || this.perPageF
     .orderBy('id', 'desc') 
     query.with('doctor')
     query.with('nurse')
     query.where('patient_id',patient.id)
 
-    return query.fetch()
+    let reports = await query.paginate(page, perPage)
+    return response.ok({reports})
   }
 }
 
