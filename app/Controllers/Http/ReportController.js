@@ -37,7 +37,7 @@ class ReportController {
 
     // prepare statement
     let query = Report.query()
-    .orderBy('id', 'desc') 
+    .orderBy('id', 'desc')
 
     query.with('doctor')
     query.with('nurse')
@@ -66,9 +66,9 @@ class ReportController {
     await User.findOrFail(nurse_id)
 
     let report = await Report.create({
-      patient_id , 
-      doctor_id , 
-      nurse_id , 
+      patient_id ,
+      doctor_id ,
+      nurse_id ,
       description,
       type
     })
@@ -76,7 +76,7 @@ class ReportController {
     return response.ok({report})
   }
 
- 
+
 
 
 
@@ -107,7 +107,7 @@ class ReportController {
     page = page || this.pageF
     perPage = perPage || this.perPageF
     let query = Report.query()
-    .orderBy('id', 'asc') 
+    .orderBy('id', 'desc')
     query.with('doctor')
     query.with('nurse')
     query.where('patient_id',patient.id)
