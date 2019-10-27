@@ -99,14 +99,14 @@ class ReportController {
   }
 
 
-  async family({ params}){
+  async family({ params,request,response}){
     let {token} = params
     let guest = await Guest.findByOrFail('token',token)
     let patient = await Patient.findByOrFail('guest_id',guest.id)
-    let query = Report.query()
     let { page,  perPage } = request.all()
     page = page || this.pageF
     perPage = perPage || this.perPageF
+    let query = Report.query()
     .orderBy('id', 'desc') 
     query.with('doctor')
     query.with('nurse')
