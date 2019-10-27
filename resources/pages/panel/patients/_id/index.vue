@@ -17,7 +17,7 @@
                 :data="doctors"
                 name="doctor"
                 v-validate="'required'"
-                :placeholder="form.doctor"
+                placeholder="Selecciona un doctor"
                 :open-on-focus="true"
                 field="username"
                 @select="option => doctorSelected = option"
@@ -41,15 +41,19 @@ export default {
   async asyncData ({ store, route }) {
     store.commit('users/setPerPage', 100)
     store.commit('users/setRole', 'doctor')
-		await store.dispatch('users/list')
-
+    await store.dispatch('users/list')
+    
+    // Get info one patient
     await store.dispatch('patients/show', route.params.id)
-    store.dispatch('users/show', store.state.patients.entity.doctor_id)
+    await store.dispatch('users/show', store.state.patients.entity.doctor_id)
 
     return {
       form: {
         name: store.state.patients.entity.name,
-        doctor: store.state.users.entity.username,
+        doctor: {
+          username: store.state.users.entity.username,
+          id: store.state.patients.entity.id
+        },
         bed: store.state.patients.entity.bed
       }
     }
@@ -63,6 +67,9 @@ export default {
     doctor: {
       handler: 'fetch'
     }
+  },
+  mounted () {
+    this.doctor = this.form.doctor.username
   },
   methods: {
     fetch () {
@@ -94,7 +101,7 @@ export default {
     async UpdatePatient(){
       const form = {
         name: this.form.name,
-        doctor_id: this.doctorSelected.id,
+        doctor_id: this.doctorSelected.id != this.form.doctor.id ? this.doctorSelected.id : this.form.doctor.id,
 				bed: this.form.bed
       }
       console.log(form)
