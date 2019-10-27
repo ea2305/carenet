@@ -16,5 +16,5 @@ Route.group(() => {
 
   Route.delete('/:id', 'ReportController.destroy')
 })
-  .prefix('/api/v1/reports')
+  .prefix('/api/v1/registries')
   .middleware('auth')

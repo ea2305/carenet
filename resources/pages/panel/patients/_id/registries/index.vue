@@ -12,7 +12,8 @@
       .column.is-11-desktop.is-11-mobile.is-flex.flex-center.flex-valign.flex-column.mt-2
         section(v-for="(report, index) of reports" :key="`rpr-${index}`")
           br/
-          .card
+          .card.notification.full-width
+            button.delete
             .card-content
               .media
                 .media-left
@@ -24,6 +25,7 @@
               .content {{ report.description }}
                 hr/
                 p.has-text-weight-bold.is-size-6 {{ $moment(report.created_at).format('DD MMM YYYY HH:mm') }}
+            .card-action
 
 
 
@@ -39,61 +41,24 @@ export default {
 	components: {
     Title
   },
-  data () {
-    return {
-      reports: [
-        {
-          doctor: { username: 'Gabriel Diaz' },
-          nurse: { username: 'Gilberto M.' },
-          type: 'bitacora', // solicitud
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
-          created_at: "2019-10-26 14:03:26+02"
-        },
-        {
-          doctor: { username: 'Gabriel Diaz' },
-          nurse: { username: 'Gilberto M.' },
-          type: 'bitacora', // solicitud
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
-          created_at: "2019-10-26 14:03:26+02"
-        },
-        {
-          doctor: { username: 'Gabriel Diaz' },
-          nurse: { username: 'Gilberto M.' },
-          type: 'bitacora', // solicitud
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
-          created_at: "2019-10-26 14:03:26+02"
-        },
-        {
-          doctor: { username: 'Gabriel Diaz' },
-          nurse: { username: 'Gilberto M.' },
-          type: 'bitacora', // solicitud
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
-          created_at: "2019-10-26 14:03:26+02"
-        },
-        {
-          doctor: { username: 'Gabriel Diaz' },
-          nurse: { username: 'Gilberto M.' },
-          type: 'bitacora', // solicitud
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
-          created_at: "2019-10-26 14:03:26+02"
-        },
-
-        {
-          doctor: { username: 'Gabriel Diaz' },
-          nurse: { username: 'Gilberto M.' },
-          type: 'bitacora', // solicitud
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
-          created_at: "2019-10-26 14:03:26+02"
-        },
-        {
-          doctor: { username: 'Berta Diaz' },
-          nurse: { username: 'Gilberto M.' },
-          type: 'solicitud', // solicitud
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
-          created_at: "2019-10-26 14:03:26+02"
-        }
-      ]
+  async asyncData ({ store, route }) {
+    await store.dispatch('registries/list', { patient_id: route.params.id })
+  },
+  computed: {
+    reports () {
+      return this.$store.state.registries.collection.map(e => ({
+        doctor: e.doctor,
+        nurse: e.nurse,
+        type: e.type,
+        description: e.description,
+        created_at: e.created_at
+      }))
     }
   }
 }
 </script>
+
+<style lang="sass" scoped>
+.full-width
+  width: 90vw !important
+</style>

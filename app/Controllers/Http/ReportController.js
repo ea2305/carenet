@@ -57,7 +57,7 @@ class ReportController {
    * @param {Response} ctx.response
    */
   async store ({ request, response }) {
-    let { patient_id , doctor_id , nurse_id , type }=request.only(['patient_id','doctor_id','nurse_id','type'])
+    let { patient_id , doctor_id , nurse_id , type , description }=request.only(['patient_id','doctor_id','nurse_id','type','description'])
     await Patient.findOrFail(patient_id)
     await User.findOrFail(doctor_id)
     await User.findOrFail(nurse_id)
@@ -66,6 +66,7 @@ class ReportController {
       patient_id , 
       doctor_id , 
       nurse_id , 
+      description,
       type
     })
 
@@ -91,7 +92,7 @@ class ReportController {
 
     await report.delete()
 
-    return report.status(200).json(report)
+    return response.status(200).json(report)
   }
 }
 

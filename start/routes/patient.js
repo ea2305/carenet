@@ -16,7 +16,7 @@ Route.group(() => {
 
   Route.get('/:id', 'PatientController.show')
 
-  Route.get('/:id/registres', 'PatientController.reports')
+  Route.get('/:id/registries', 'PatientController.reports')
   
   Route.put('/:id', 'PatientController.update')
 

@@ -7,6 +7,7 @@ const Hash = use('Hash')
 const Patient= use('App/Models/Patient')
 const Guest= use('App/Models/Guest')
 const User= use('App/Models/User')
+const Report= use('App/Models/Report')
 /**
  * Resourceful controller for interacting with patients
  */
@@ -143,7 +144,12 @@ class PatientController {
   async reports({params}){
     let {id} = params
     const patient =await Patient.findOrFail(id)
-    return  await patient.reports().fetch()
+    let query = Report.query()
+    query.with('doctor')
+    query.with('nurse')
+    query.where('patient_id',id)
+
+    return  await query.fetch()
   }
 }
 
