@@ -96,7 +96,7 @@ export const actions = {
           search: state.search,
           perPage: state.perPage
         }
-        let { data } = await this.$axios.get(`/${name}/${patient_id}/registres`, { params })
+        let { data } = await this.$axios.get(`/${name}/${patient_id}/registries`, { params })
         commit('setCollection', data.patients)
         resolve(data)
       } catch (error) {

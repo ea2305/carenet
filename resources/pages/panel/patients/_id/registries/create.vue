@@ -57,13 +57,14 @@ export default {
     audio () {
       // audio function here
     },
-    sendForm () {
+  async sendForm () {
       let form = { ...this.form }
       form.patient_id = this.$store.state.patients.entity.id
       form.doctor_id = this.$store.state.patients.entity.doctor_id
       form.nurse_id = this.$auth.user.id
 
-      this.$store.dispatch('registries/create', { form, patient_id: this.$route.params.id })
+      await this.$store.dispatch('registries/create', { form, patient_id: this.$route.params.id })
+      this.$router.go(-1)
     }
   }
 }
