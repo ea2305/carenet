@@ -4,16 +4,16 @@
 
     .columns.is-multiline.is-mobile.is-centered
       //- Search
-      .column.is-11-desktop.is-12-mobile.mt-2
+      .column.is-11-desktop.is-11-mobile.mt-2
         Search( @sendSearch="sendSearch", :data="$store.state.users.collection.data" )
 
       //- Filtros
-      .column.is-11-desktop.is-12-mobile
+      .column.is-11-desktop.is-11-mobile
         .columns.is-multiline.is-mobile
           //- p Filtros
 
       //- Tabla users data
-      .column.is-11-desktop.is-12-mobile
+      .column.is-11-desktop.is-11-mobile
         b-table(
           :data='$store.state.users.collection.data',
           :mobile-cards="true"
