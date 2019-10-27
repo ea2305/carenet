@@ -61,7 +61,7 @@ export default {
     Title
   },
   async asyncData ({ store }) {
-		store.dispatch('users/list')
+    store.dispatch('users/list')
   },
   data: () => ({
     // Search filter
