@@ -35,12 +35,8 @@ class NuxtService {
    *
    * @return {Promise}
    */
-  render (req, res) {
-    return new Promise((resolve, reject) => {
-      this.nuxt.render(req, res, promise => {
-        promise.then(resolve).catch(reject)
-      })
-    })
+  async render (req, res) {
+    await this.nuxt.render(req, res)
   }
 }
 
