@@ -107,7 +107,7 @@ class ReportController {
     page = page || this.pageF
     perPage = perPage || this.perPageF
     let query = Report.query()
-    .orderBy('id', 'desc') 
+    .orderBy('id', 'asc') 
     query.with('doctor')
     query.with('nurse')
     query.where('patient_id',patient.id)
