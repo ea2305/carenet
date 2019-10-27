@@ -143,7 +143,12 @@ class PatientController {
   async reports({params}){
     let {id} = params
     const patient =await Patient.findOrFail(id)
-    return  await patient.reports().fetch()
+    let query = Report.query()
+    query.with('doctor')
+    query.with('nurse')
+    query.where('id',id)
+
+    return  await query
   }
 }
 
