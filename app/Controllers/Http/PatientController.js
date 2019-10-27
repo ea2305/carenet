@@ -147,7 +147,7 @@ class PatientController {
     let query = Report.query()
     query.with('doctor')
     query.with('nurse')
-    query.where('id',id)
+    query.where('patient_id',id)
 
     return  await query.fetch()
   }
