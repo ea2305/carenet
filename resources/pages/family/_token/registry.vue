@@ -6,6 +6,9 @@
 
       //- Content
       .column.is-11-desktop.is-11-mobile.is-flex.flex-center.flex-valign.flex-column.mt-2
+
+        p.title.has-text-centered(v-if="reports.length === 0") El paciente aun no cuenta con registros
+
         section(v-for="(report, index) of reports" :key="`rpr-${index}`")
           br/
           .card.notification.full-width
@@ -42,7 +45,9 @@ export default {
 
   computed: {
     reports () {
-      return this.$store.state.registries.collection.map(e => ({
+      console.log(this.$store.state.registries)
+      return ''
+      return this.$store.state.registries.collection.reports.data.map(e => ({
         id: e.id,
         doctor: e.doctor,
         nurse: e.nurse,

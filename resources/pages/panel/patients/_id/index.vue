@@ -27,6 +27,12 @@
 
             button.button.has-background-success.has-text-white.is-pulled-right.mb-4.pl-2.pr-2( type="submit" ) Actualizar paciente
 
+          br/
+          nuxt-link.button.is-info.is-fullwidth(:to="`/panel/patients/${$route.params.id}/registries`") Información de registro de paciente
+          br/
+          nuxt-link.button.is-white.is-fullwidth(:to="`/panel/registries/${$route.params.id}`") QR Client
+
+
 </template>
 
 <script>

@@ -1,13 +1,13 @@
 <template lang="pug">
   main
-    Title(title="Cama: Ejemplo" subtitle="")
+    Title(:title="`Paciente QR - ${$route.params.code}`" subtitle="")
 
     .columns.is-multiline.is-mobile.is-centered
 
       //- Content
       .column.is-11-desktop.is-11-mobile.is-flex.flex-center.flex-valign.flex-column.mt-2
 
-        qrcode(value="Hello, World!" :options="{ width: 400 }")
+        qrcode(:value="$route.params.code" :options="{ width: 400 }")
 
 </template>
 
