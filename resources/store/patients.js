@@ -136,7 +136,7 @@ export const actions = {
    * @param {Object} params.form : Form information
    * @param {Object} params.index : Form information
    */
-  async update ({ commit }, { form, index }) {
+  async update ({ dispatch }, { form, index }) {
     const loader = LoadingProgrammatic.open()
 
     return new Promise(async (resolve, reject) => {
@@ -144,6 +144,7 @@ export const actions = {
         const { data } = await this.$axios.put(`/${name}/${index}`, form)
         // notification
         Toast.open({ message: 'Elemento actualizado', type: 'is-success' })
+        dispatch('list')
         resolve(data)
       } catch (error) {
         Toast.open({ message: 'Elemento no actualizado', type: 'is-danger' })
