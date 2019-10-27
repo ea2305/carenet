@@ -97,7 +97,7 @@ export const actions = {
           perPage: state.perPage
         }
         let { data } = await this.$axios.get(`/${name}/${patient_id}/registries`, { params })
-        commit('setCollection', data.patients)
+        commit('setCollection', data)
         resolve(data)
       } catch (error) {
         reject(error)
@@ -115,8 +115,9 @@ export const actions = {
   async create ({ commit }, { form, patient_id }) {
     return new Promise(async (resolve, reject) => {
       const loader = LoadingProgrammatic.open()
+      form.patient_id = patient_id
       try {
-        let { data } = await this.$axios.post(`/${name}/${patient_id}/registries`, form)
+        let { data } = await this.$axios.post(`/registries`, form)
         commit('setIndex', data.id)
         Toast.open({ message: 'Elemento creado', type: 'is-success' })
         resolve(data)

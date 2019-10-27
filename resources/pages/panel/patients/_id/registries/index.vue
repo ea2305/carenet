@@ -44,7 +44,7 @@ export default {
   },
   computed: {
     reports () {
-      console.log(this.$store.state.registries.collection)
+      return this.$store.state.registries.collection
     }
   }
 }
