@@ -18,10 +18,10 @@
               .media
                 .media-left
                   figure.image.is-48x48
-                    img(:src="(report.type === 'solicitud') ? '/icons/request.png' : '/icons/report.png'", alt='Report and request icon')
+                    img(:src="(report.type === 'request') ? '/icons/request.png' : '/icons/report.png'", alt='Report and request icon')
                 .media-content
                   p.title.is-4 {{ report.nurse.username }}
-                  p.subtitle.is-6 {{ (report.type === 'solicitud') ? 'Solicitud' : 'Reporte' }}
+                  p.subtitle.is-6 {{ (report.type === 'request') ? 'Solicitud' : 'Reporte' }}
               .content {{ report.description }}
                 hr/
                 p.has-text-weight-bold.is-size-6 {{ $moment(report.created_at).format('DD MMM YYYY HH:mm') }}
