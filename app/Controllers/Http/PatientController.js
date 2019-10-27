@@ -35,7 +35,7 @@ class PatientController {
 
     // prepare statement
     let query = Patient.query()
-    .orderBy('id', 'asc') 
+    .orderBy('id', 'asc')
 
     query.with('doctor')
     if (search) {
@@ -66,8 +66,8 @@ class PatientController {
       token
     })
     let patient = await Patient.create({
-      name, 
-      bed , 
+      name,
+      bed ,
       doctor_id,
       guest_id:guest.id
     })
@@ -112,8 +112,8 @@ class PatientController {
      }
      patient.merge(data)
      await patient.save()
- 
-     return response.ok({patient})    
+
+     return response.ok({patient})
   }
 
   /**

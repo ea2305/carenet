@@ -1,9 +1,8 @@
 <template lang="pug">
   main
     Title(title="Registrar paciente")
-    p Create
 
-    .column.is-12-desktop.is-12-mobile
+    .column.is-12-desktop.is-12-mobile.mt-2
       .columns.is-multiline.is-mobile.is-centered
         .column.is-9-desktop.is-12-mobile
           form( @submit.prevent="validateBeforeSubmit" ref='form')
@@ -26,7 +25,7 @@
             b-field( label="Cama" :type="{'is-danger': errors.has('bed')}" :message="errors.first('bed')" )
               b-input( v-model="bed" name="bed" v-validate="'required|max:500'" )
 
-            button.button.has-background-pink.has-text-white.is-pulled-right.mb-4.pl-2.pr-2( type="submit" ) Crear paciente
+            button.button.has-background-success.has-text-white.is-pulled-right.mb-4.pl-2.pr-2( type="submit" ) Crear paciente
 
 </template>
 

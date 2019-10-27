@@ -1,7 +1,6 @@
 <template lang="pug">
   main
     Title(title="Registrar paciente")
-    p Create
 
     .column.is-12-desktop.is-12-mobile
       .columns.is-multiline.is-mobile.is-centered
@@ -26,7 +25,7 @@
             b-field( label="Cama" :type="{'is-danger': errors.has('form.bed')}" :message="errors.first('form.bed')" )
               b-input( v-model="form.bed" name="form.bed" v-validate="'required|max:500'" )
 
-            button.button.has-background-pink.has-text-white.is-pulled-right.mb-4.pl-2.pr-2( type="submit" ) Actualizar paciente
+            button.button.has-background-success.has-text-white.is-pulled-right.mb-4.pl-2.pr-2( type="submit" ) Actualizar paciente
 
 </template>
 
@@ -50,7 +49,8 @@ export default {
       form: {
         name: store.state.patients.entity.name,
         doctor: store.state.users.entity.username,
-        bed: store.state.patients.entity.bed
+        bed: store.state.patients.entity.bed,
+        doctorSelected: store.state.users.entity,
       }
     }
 	},

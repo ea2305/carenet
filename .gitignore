@@ -8,9 +8,11 @@ storage/*
 
 # Keeping storage directory
 !storage/.gitkeep
+app.yaml
 
 # Environment files should be seperate for each environment
 .env
+.env.production
 
 # When npm runs error it write logs to the below file
 npm-debug.log
