@@ -11,5 +11,10 @@
       <nuxt-link class="button is-success" to="/auth/login"> Iniciar sesión </nuxt-link>
     </div>
 
+    <div class="is-flex flex-center">
+      <hr/>
+      <nuxt-link class="button is-info" to="/family"> Familirares </nuxt-link>
+    </div>
+
   </section>
 </template>

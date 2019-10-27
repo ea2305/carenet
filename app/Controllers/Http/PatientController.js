@@ -86,8 +86,14 @@ class PatientController {
    */
   async show ({ params, response }) {
     let {id } = params
-    let patient = await Patient.findOrFail(id)
-    return response.ok({patient})
+    let query = Patient.query()
+
+    query.with('guest')
+    query.where('id', id)
+
+    let patient = await query.first()
+
+    return response.ok({ patient })
   }
 
 

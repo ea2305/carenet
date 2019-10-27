@@ -31,6 +31,10 @@
           nuxt-link.button.is-info.is-fullwidth(:to="`/panel/patients/${$route.params.id}/registries`") Información de registro de paciente
           br/
           nuxt-link.button.is-white.is-fullwidth(:to="`/panel/registries/${$route.params.id}`") QR Client
+          br/
+          b-input( name="token" :value="token")
+          a.button.is-info.is-fullwidth(:href="`mailto:?subject=Invitación Paciente&body=El código de acceso es${token}`" target="_blank") Enviar correo
+
 
 
 </template>
@@ -93,7 +97,6 @@ export default {
 						type: 'is-success',
 						position: 'is-bottom'
 					})
-
 					return;
 				}
 				this.$buefy.toast.open({
@@ -125,6 +128,9 @@ export default {
           return doctor.username.toString().toLowerCase().indexOf(this.doctor.toLowerCase()) >= 0
         }
       })
+    },
+    token () {
+      return this.$store.state.patients.entity.guest.token
     }
   }
 }

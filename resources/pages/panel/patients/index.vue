@@ -36,7 +36,7 @@
             b-table-column(field="id" label="Acciones" width="10" v-if="$auth.user.rol === 'admin'")
               .is-flex.flex-center
                 nuxt-link.button.is-rounded.is-outlined.is-primary.is-small(:to="`/panel/patients/${props.row.id}`") Editar
-                button.button.is-rounded.is-outlined.is-danger.is-small.ml-1(@click="showDeleteModal(props.row.id)") Eliminar
+                button.button.is-rounded.is-outlined.is-black.is-small.ml-1(@click="showDeleteModal(props.row.id)") Desactivar
 
       b-modal(:active.sync="isModalActive")
         .card.is-flex.flex-center.flex-column.p-2

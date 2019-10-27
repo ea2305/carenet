@@ -8,8 +8,12 @@ class Patient extends Model {
         return this.belongsTo('App/Models/User', 'doctor_id')
     }
 
-    reports(){
+    reports() {
         return this.hasMany('App/Models/Report')
+    }
+
+    guest () {
+        return this.belongsTo('App/Models/Guest', 'guest_id')
     }
 }
 
