@@ -107,6 +107,30 @@ export const actions = {
     })
   },
 
+  /**
+   *
+   * @param {Object} ctx : Nuxt context
+   */
+  async listWithToken ({ commit, state }, { token }) {
+    return new Promise(async (resolve, reject) => {
+      const loader = LoadingProgrammatic.open()
+      try {
+        let params = {
+          page: state.page,
+          search: state.search,
+          perPage: state.perPage
+        }
+        let { data } = await this.$axios.get(`/families/${token}`, { params })
+        commit('setCollection', data)
+        resolve(data)
+      } catch (error) {
+        reject(error)
+      } finally {
+        loader.close()
+      }
+    })
+  },
+
 	/**
    *
    * @param {Object} ctx : Nuxt context
