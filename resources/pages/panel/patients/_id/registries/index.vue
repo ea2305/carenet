@@ -12,7 +12,7 @@
       .column.is-11-desktop.is-11-mobile.is-flex.flex-center.flex-valign.flex-column.mt-2
         section(v-for="(report, index) of reports" :key="`rpr-${index}`")
           br/
-          .card.notification
+          .card.notification.full-width
             button.delete
             .card-content
               .media
@@ -57,3 +57,8 @@ export default {
   }
 }
 </script>
+
+<style lang="sass" scoped>
+.full-width
+  width: 90vw !important
+</style>
