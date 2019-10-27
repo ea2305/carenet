@@ -149,7 +149,7 @@ class PatientController {
     query.with('nurse')
     query.where('id',id)
 
-    return  await query
+    return  await query.fetch()
   }
 }
 
