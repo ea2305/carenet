@@ -13,7 +13,7 @@
         section(v-for="(report, index) of reports" :key="`rpr-${index}`")
           br/
           .card.notification.full-width
-            button.delete
+            button.delete(@click.prevent="deleteElement(report.id)")
             .card-content
               .media
                 .media-left
@@ -44,9 +44,15 @@ export default {
   async asyncData ({ store, route }) {
     await store.dispatch('registries/list', { patient_id: route.params.id })
   },
+  methods: {
+    deleteElement (id) {
+      this.$store.dispatch('registries/delete', { patient_id: this.$route.params.id, index: id })
+    }
+  },
   computed: {
     reports () {
       return this.$store.state.registries.collection.map(e => ({
+        id: e.id,
         doctor: e.doctor,
         nurse: e.nurse,
         type: e.type,
