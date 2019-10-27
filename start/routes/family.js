@@ -2,18 +2,15 @@
 
 /*
 |--------------------------------------------------------------------------
-| Routes
+| Family Routes
 |--------------------------------------------------------------------------
 */
 
 const Route = use('Route')
 
-// Router split files
-require('./auth')
-require('./user')
-require('./patient')
-require('./registrie')
-require('./family')
+Route.group(() => {
 
+  Route.get('/:token', 'ReportController.family')  
 
-Route.any('*', 'NuxtController.render')
+})
+  .prefix('/api/v1/families')

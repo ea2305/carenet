@@ -7,6 +7,7 @@
 const Patient= use('App/Models/Patient')
 const User= use('App/Models/User')
 const Report= use('App/Models/Report')
+const Guest= use('App/Models/Guest')
 /**
  * Resourceful controller for interacting with reports
  */
@@ -93,6 +94,20 @@ class ReportController {
     await report.delete()
 
     return response.status(200).json(report)
+  }
+
+
+  async family({ params}){
+    let {token} = params
+    let guest = await Guest.findByOrFail('token',token)
+    let patient = await Patient.findByOrFail('guest_id',guest.id)
+    let query = Report.query()
+    .orderBy('id', 'desc') 
+    query.with('doctor')
+    query.with('nurse')
+    query.where('patient_id',patient.id)
+
+    return query.fetch()
   }
 }
 

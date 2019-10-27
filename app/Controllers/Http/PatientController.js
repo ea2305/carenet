@@ -35,7 +35,7 @@ class PatientController {
 
     // prepare statement
     let query = Patient.query()
-    .orderBy('id', 'asc')
+    .orderBy('id', 'desc')
 
     query.with('doctor')
     if (search) {
