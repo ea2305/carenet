@@ -7,6 +7,7 @@ const Hash = use('Hash')
 const Patient= use('App/Models/Patient')
 const Guest= use('App/Models/Guest')
 const User= use('App/Models/User')
+const Report= use('App/Models/Report')
 /**
  * Resourceful controller for interacting with patients
  */
