@@ -45,8 +45,7 @@ export default {
 
   computed: {
     reports () {
-      console.log(this.$store.state.registries)
-      return ''
+
       return this.$store.state.registries.collection.reports.data.map(e => ({
         id: e.id,
         doctor: e.doctor,
