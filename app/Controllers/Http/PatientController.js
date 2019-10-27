@@ -35,12 +35,13 @@ class PatientController {
 
     // prepare statement
     let query = Patient.query()
-    .orderBy('id', 'desc')
 
     query.with('doctor')
+
     if (search) {
       query.where('name', 'LIKE', `%${search}%`)
     }
+    query.orderBy('id', 'desc')
 
     let patients = await query.paginate(page, perPage)
     return response.ok({patients})
