@@ -87,17 +87,16 @@ export const actions = {
    *
    * @param {Object} ctx : Nuxt context
    */
-  async list ({ commit, state }) {
+  async list ({ commit, state }, { patient_id }) {
     return new Promise(async (resolve, reject) => {
       const loader = LoadingProgrammatic.open()
       try {
         let params = {
           page: state.page,
           search: state.search,
-          perPage: state.perPage,
-          rol: state.rol
+          perPage: state.perPage
         }
-        let { data } = await this.$axios.get(`/${name}/${patient_id}/registries`, { params })
+        let { data } = await this.$axios.get(`/${name}/${patient_id}/registres`, { params })
         commit('setCollection', data.patients)
         resolve(data)
       } catch (error) {

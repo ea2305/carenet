@@ -39,60 +39,12 @@ export default {
 	components: {
     Title
   },
-  data () {
-    return {
-      reports: [
-        {
-          doctor: { username: 'Gabriel Diaz' },
-          nurse: { username: 'Gilberto M.' },
-          type: 'bitacora', // solicitud
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
-          created_at: "2019-10-26 14:03:26+02"
-        },
-        {
-          doctor: { username: 'Gabriel Diaz' },
-          nurse: { username: 'Gilberto M.' },
-          type: 'bitacora', // solicitud
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
-          created_at: "2019-10-26 14:03:26+02"
-        },
-        {
-          doctor: { username: 'Gabriel Diaz' },
-          nurse: { username: 'Gilberto M.' },
-          type: 'bitacora', // solicitud
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
-          created_at: "2019-10-26 14:03:26+02"
-        },
-        {
-          doctor: { username: 'Gabriel Diaz' },
-          nurse: { username: 'Gilberto M.' },
-          type: 'bitacora', // solicitud
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
-          created_at: "2019-10-26 14:03:26+02"
-        },
-        {
-          doctor: { username: 'Gabriel Diaz' },
-          nurse: { username: 'Gilberto M.' },
-          type: 'bitacora', // solicitud
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
-          created_at: "2019-10-26 14:03:26+02"
-        },
-
-        {
-          doctor: { username: 'Gabriel Diaz' },
-          nurse: { username: 'Gilberto M.' },
-          type: 'bitacora', // solicitud
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
-          created_at: "2019-10-26 14:03:26+02"
-        },
-        {
-          doctor: { username: 'Berta Diaz' },
-          nurse: { username: 'Gilberto M.' },
-          type: 'solicitud', // solicitud
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
-          created_at: "2019-10-26 14:03:26+02"
-        }
-      ]
+  async asyncData ({ store, route }) {
+    await store.dispatch('registries/list', { patient_id: route.params.id })
+  },
+  computed: {
+    reports () {
+      console.log(this.$store.state.registries.collection)
     }
   }
 }

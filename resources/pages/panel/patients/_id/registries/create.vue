@@ -5,11 +5,9 @@
 
       //- Content
       .column.is-11-desktop.is-11-mobile.mt-2
-        p patient_id : integer
-        p doctor_id : integer
-        p nurse_id : integer
-        p descripción :  string
-        p type : string
+
+        p.is-size-5.has-text-weight-bold.has-text-right Reporte para día:
+        p.is-size-5.has-text-right {{ $moment().format('DD MM YYYY - HH:mm') }}
 
         form(@submit.prevent="sendForm")
           b-field(label='Tipo de reporte' :type="{'is-danger': errors.has('form.type')}" :message="errors.first('form.type')")
@@ -20,14 +18,14 @@
           b-field(label='Descripción' :type="{'is-danger': errors.has('form.description')}" :message="errors.first('form.description')")
             b-input(type="textarea" v-model='form.description', name='form.description', maxlength='750' v-validate="'required|max:750|min:10'" required)
 
-          button.button.is-large.is-fullwidth(@click.prevent="audio")
+          button.button.is-large.is-rounded.is-fullwidth(@click.prevent="audio")
             span.icon.is-small
               i.fas.fa-podcast
             span Grabar audio
 
 
           br/
-          button.button.is-success.is-medium.is-pulled-right Procesar registro
+          button.button.is-success.is-medium.is-pulled-right.is-fullwidth Procesar registro
 
 
 
@@ -57,18 +55,14 @@ export default {
   },
   methods: {
     audio () {
-      alert(4)
+      // audio function here
     },
     sendForm () {
       let form = { ...this.form }
-      /**
-        p patient_id : integer
-        p doctor_id : integer
-        p nurse_id : integer
-       */
       form.patient_id = this.$store.state.patients.entity.id
-      form.doctor_id = this.$store.state.patients.entity.doctor.id
+      form.doctor_id = this.$store.state.patients.entity.doctor_id
       form.nurse_id = this.$auth.user.id
+
       this.$store.dispatch('registries/create', { form, patient_id: this.$route.params.id })
     }
   }
