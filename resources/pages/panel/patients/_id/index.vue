@@ -6,19 +6,18 @@
     .column.is-12-desktop.is-12-mobile
       .columns.is-multiline.is-mobile.is-centered
         .column.is-9-desktop.is-12-mobile
-          p {{ form }}
           form( @submit.prevent="validateBeforeSubmit" ref='form')
             b-field( label="Nombre Completo" :type="{'is-danger': errors.has('form.name')}" :message="errors.first('form.name')" )
               b-input( v-model="form.name" name="form.name" v-validate="'required|max:500'" maxlength="254")
 
             // - Seleccionar Doctor
-            b-field( label="Selecciona un doctor" :type="{'is-danger': errors.has('form.doctor')}" :message="errors.first('form.doctor')" )
+            b-field( label="Selecciona un doctor" :type="{'is-danger': errors.has('doctor')}" :message="errors.first('doctor')" )
               b-autocomplete(
-                v-model="form.doctor"
+                v-model="doctor"
                 :data="doctors"
-                name="form.doctor"
+                name="doctor"
                 v-validate="'required'"
-                placeholder="Selecciona un doctor"
+                :placeholder="form.doctor"
                 :open-on-focus="true"
                 field="username"
                 @select="option => doctorSelected = option"
@@ -27,7 +26,7 @@
             b-field( label="Cama" :type="{'is-danger': errors.has('form.bed')}" :message="errors.first('form.bed')" )
               b-input( v-model="form.bed" name="form.bed" v-validate="'required|max:500'" )
 
-            button.button.has-background-pink.has-text-white.is-pulled-right.mb-4.pl-2.pr-2( type="submit" ) Crear paciente
+            button.button.has-background-pink.has-text-white.is-pulled-right.mb-4.pl-2.pr-2( type="submit" ) Actualizar paciente
 
 </template>
 
@@ -40,16 +39,17 @@ export default {
     Title
   },
   async asyncData ({ store, route }) {
-    // store.commit('users/setPerPage', 100)
-    // store.commit('users/setRole', 'doctor')
-    // await store.dispatch('users/list')
+    store.commit('users/setPerPage', 100)
+    store.commit('users/setRole', 'doctor')
+		await store.dispatch('users/list')
+
     await store.dispatch('patients/show', route.params.id)
-    store.commit('users/show', store.state.patients.entity.doctor_id)
+    store.dispatch('users/show', store.state.patients.entity.doctor_id)
 
     return {
       form: {
         name: store.state.patients.entity.name,
-        doctor: store.state.users.entity,
+        doctor: store.state.users.entity.username,
         bed: store.state.patients.entity.bed
       }
     }
@@ -75,7 +75,7 @@ export default {
 		validateBeforeSubmit() {
 			this.$validator.validateAll().then((result) => {
 				if (result) {
-					this.AddNewPatient()
+					this.UpdatePatient()
 					this.$buefy.toast.open({
 						message: 'Formulario enviado.',
 						type: 'is-success',
@@ -91,14 +91,15 @@ export default {
 				})
       })
     },
-    async AddNewPatient(){
+    async UpdatePatient(){
       const form = {
-        name: this.name,
+        name: this.form.name,
         doctor_id: this.doctorSelected.id,
-				bed: this.bed
+				bed: this.form.bed
       }
+      console.log(form)
 			// Crea nuevo usuario en store
-			await this.$store.dispatch('patients/create', form)
+			await this.$store.dispatch('patients/update', { form, index: this.$route.params.id })
 			this.$router.push("/panel/patients")
     }
   },

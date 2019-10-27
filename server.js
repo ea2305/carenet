@@ -23,7 +23,7 @@ new Ignitor(require('@adonisjs/fold'))
   .appRoot(__dirname)
   .fireHttpServer()
   .then(() => {
-    //return use('App/Services/Nuxt').build()
+    // return use('App/Services/Nuxt').build()
   })
   .then(() => {
     use('Logger').info('Nuxt is ready to handle requests')
