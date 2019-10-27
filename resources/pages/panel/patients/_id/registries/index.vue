@@ -12,7 +12,8 @@
       .column.is-11-desktop.is-11-mobile.is-flex.flex-center.flex-valign.flex-column.mt-2
         section(v-for="(report, index) of reports" :key="`rpr-${index}`")
           br/
-          .card
+          .card.notification
+            button.delete
             .card-content
               .media
                 .media-left
@@ -24,6 +25,7 @@
               .content {{ report.description }}
                 hr/
                 p.has-text-weight-bold.is-size-6 {{ $moment(report.created_at).format('DD MMM YYYY HH:mm') }}
+            .card-action
 
 
 
@@ -44,7 +46,13 @@ export default {
   },
   computed: {
     reports () {
-      return this.$store.state.registries.collection
+      return this.$store.state.registries.collection.map(e => ({
+        doctor: e.doctor,
+        nurse: e.nurse,
+        type: e.type,
+        description: e.description,
+        created_at: e.created_at
+      }))
     }
   }
 }
