@@ -66,7 +66,7 @@
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-standard": "4.0.1",
     "nodemon": "1.19.4",
-    "pug": "2.0.3",
+    "pug": "3.0.1",
     "standard": "14.3.1"
   }
 }
